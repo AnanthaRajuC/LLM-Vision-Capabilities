@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2a168218-87e6-4448-8277-a3ff4ed95f67" name="Changes" comment="Initial Commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LLM-Vision-Capabilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/LLM-Vision-Capabilities.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
