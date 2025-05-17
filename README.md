@@ -101,6 +101,23 @@ ollama pull llama3.2-vision
 ollama pull qwen2.5vl
 ```
 
+## Setup
+
+```commandline
+CREATE TABLE crop_detection_results
+(
+    `crop` String,
+    `alternate_names` Array(String),
+    `color` Array(String),
+    `confidence` Float32,
+    `startDateTime` DateTime,
+    `endDateTime` DateTime,
+    `duration` Float32
+)
+ENGINE = MergeTree
+ORDER BY startDateTime
+```
+
 ## Usage
 
 ```bash
