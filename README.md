@@ -10,6 +10,20 @@ This Python script allows you to identify crops in an image using a local [Ollam
 
 It sends an image and a predefined JSON-format prompt to a selected vision model running locally via Ollama, and returns structured information about the crop detected in the image.
 
+
+```text
+Identify the crop in this image and respond ONLY in the following JSON format:
+
+{
+  "crop": "<primary crop name>",
+  "alternate_names": ["<alternate name 1>", "<alternate name 2>"],
+  "color": ["<color 1>", "<color 2>"],
+  "confidence": <confidence score from 0 to 1>
+}
+
+If any field is not known, return an empty list or null value as appropriate. Do not include any other text.
+```
+
 ## Features
 
 - Uses models like `llama3.2-vision` and `qwen2.5vl` via the Ollama API
@@ -71,14 +85,20 @@ The result is a structured JSON response, like:
 
 ```json
 {
-  "crop": "wheat",
-  "alternate_names": ["triticum"],
-  "color": ["golden", "brown"],
-  "confidence": 0.92,
+  "crop": "peanut",
+  "alternate_names": [
+    "groundnut",
+    "earthnut"
+  ],
+  "color": [
+    "brown",
+    "green"
+  ],
+  "confidence": 0.95,
   "metadata": {
-    "startDateTime": "2025-05-17T12:00:00",
-    "endDateTime": "2025-05-17T12:00:03",
-    "duration": 3.0
+    "startDateTime": "2025-05-17T11:05:47.702582",
+    "endDateTime": "2025-05-17T11:09:09.020386",
+    "duration": 201.32
   }
 }
 ```
