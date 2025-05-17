@@ -77,7 +77,11 @@ python3 LLM-Vision-Capabilities.py qwen2.5vl:latest /home/user/image.jpg
 
 If no arguments are passed, defaults will be used:
 - Model: `qwen2.5vl:latest`
-- Image: `/home/anantharajuc/Desktop/ng.jpg`
+- Image: `demo.jpg`
+
+## Demo Image
+
+![Demo Image](demo.jpg)
 
 ## Output
 
@@ -112,13 +116,13 @@ The result is a structured JSON response, like:
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 Kindly refer to [CONTRIBUTING.md](/CONTRIBUTING.md) for important **Pull Request Process** details
 
 1. In the top-right corner of this page, click **Fork**.
 
-2. Clone a copy of your fork on your local, replacing *YOUR-USERNAME* with your Github username.
+2. Clone a copy of your fork on your local, replacing *YOUR-USERNAME* with your GitHub username.
 
    `git clone https://github.com/YOUR-USERNAME/LLM-Vision-Capabilities.git`
 
@@ -149,7 +153,7 @@ Kindly follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0
 **fix**     : A bug fix  
 **perf**    : A code change that improves performance  
 **refactor**: A code change that neither fixes a bug nor adds a feature  
-**style**   : Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)  
+**style**   : Changes that do not affect the meaning of the code (white-space, formatting, missing semicolons, etc.)  
 **test**    : Adding missing tests or correcting existing tests  
 
 ## Reporting Issues/Suggest Improvements
@@ -163,7 +167,7 @@ This Project uses GitHub's integrated issue tracking system to record bugs and f
 
 ## License
 
-Distributed under the MIT License. See [LICENSE.md](/LICENSE.md) for more information.
+Distributed under the MIT License. See [LICENSE.md](/LICENSE) for more information.
 
 ## Author
 

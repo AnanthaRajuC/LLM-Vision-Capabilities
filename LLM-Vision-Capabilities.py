@@ -1,3 +1,5 @@
+import os
+
 import requests
 import ollama
 from PIL import Image
@@ -10,7 +12,11 @@ import json
 # ====================== CONFIGURATION DEFAULTS ======================
 
 DEFAULT_MODEL_NAME = "qwen2.5vl:latest"
-DEFAULT_IMAGE_PATH = "/home/anantharajuc/Desktop/ng.jpg"
+# Get the directory where the script is located
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Set default image path relative to the script directory
+DEFAULT_IMAGE_PATH = os.path.join(SCRIPT_DIR, "demo.jpg")
 OLLAMA_URL = "http://localhost:11434"
 
 PROMPT = (
