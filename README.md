@@ -6,10 +6,9 @@
 -->
 # LLM-Vision-Capabilities
 
-This Python script allows you to identify crops in an image using a local [Ollama](https://ollama.com/) server with vision-capable large language models (LLMs) such as `llama3.2-vision` or `qwen2.5vl`.
+This Python script allows you to identify crops in an image using [Ollama](https://ollama.com/) server to run vision-enabled LLMs locally, such as `llama3.2-vision` or `qwen2.5vl`, without relying on the Hugging Face Transformers library or cloud-based APIs.
 
 It sends an image and a predefined JSON-format prompt to a selected vision model running locally via Ollama, and returns structured information about the crop detected in the image.
-
 
 ```text
 Identify the crop in this image and respond ONLY in the following JSON format:
@@ -23,6 +22,16 @@ Identify the crop in this image and respond ONLY in the following JSON format:
 
 If any field is not known, return an empty list or null value as appropriate. Do not include any other text.
 ```
+
+## Model Recommendation
+
+While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-vision:latest`, `qwen2.5vl:latest` is recommended based on local testing due to:
+
+- Reasonable inference times
+- Reliable structured JSON responses
+- Decent resource usage on a typical commodity laptop
+
+⚠️ **Note:** These observations are based on running the models locally on a standard laptop. Performance and accuracy may vary depending on your system's hardware (CPU, GPU, RAM, etc.).
 
 <div align="center">
 
