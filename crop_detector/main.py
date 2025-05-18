@@ -2,11 +2,11 @@ import sys
 import json
 from datetime import datetime
 
-from config import DEFAULT_MODEL_NAME, DEFAULT_IMAGE_PATH, PROMPT, CLICKHOUSE_CONFIG
+from crop_detector.config import DEFAULT_MODEL_NAME, DEFAULT_IMAGE_PATH, PROMPT, CLICKHOUSE_CONFIG
 
-from image_utils import encode_image
+from crop_detector.image_utils import encode_image
 from ollama_client import check_ollama_status, call_model
-from db.clickhouse_client import save_to_clickhouse
+from crop_detector.db.clickhouse_client import save_to_clickhouse
 
 # Parse CLI arguments
 model_name = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_MODEL_NAME

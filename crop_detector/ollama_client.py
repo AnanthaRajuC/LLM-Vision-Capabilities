@@ -1,6 +1,6 @@
 import requests
 import ollama
-from config import OLLAMA_URL
+from crop_detector.config import OLLAMA_URL
 
 def check_ollama_status() -> bool:
     try:

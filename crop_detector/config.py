@@ -5,7 +5,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 OLLAMA_URL = "http://localhost:11434"
 
 DEFAULT_MODEL_NAME = "qwen2.5vl:latest"
-DEFAULT_IMAGE_PATH = os.path.join(SCRIPT_DIR, "demo.jpg")
+DEFAULT_IMAGE_PATH = os.path.join(SCRIPT_DIR,"assets","demo.jpg")
 
 PROMPT = (
     "Identify the crop in this image and respond ONLY in the following JSON format:\n\n"
