@@ -80,7 +80,7 @@ While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-v
 
 ## Demo Image
 
-![Demo Image](demo.jpg)
+![Demo Image](crop_detector/assets/demo.jpg)
 
 ## Output
 
@@ -105,13 +105,6 @@ The result is a structured JSON response, like:
   }
 }
 ```
-
-## Notes
-
-- Ensure that the Ollama server is running on `http://localhost:11434`
-- The script encodes the image in base64 before sending it to the model
-- The output strictly follows the expected JSON schema
-
 <!-- CONTRIBUTING -->
 ## Contributing
 

@@ -132,6 +132,8 @@ This makes it easy to test the script quickly without having to specify paramete
 
 ## 📝 Notes
 
+- Ensure that the Ollama server is running on `http://localhost:11434`
+- The output strictly follows the expected JSON schema
 - The models can take some time to load initially, especially on the first run.
 - Model capabilities vary: some may be better at object detection, others at text reading or image captioning.
 - Ensure your system has enough RAM and compute resources to run large vision models locally.
