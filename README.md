@@ -63,6 +63,11 @@ While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-v
 |-----------------|-------|-------|-------|-------|-------|
 |  **GitHub**     |[![GitHub last commit](https://img.shields.io/github/last-commit/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/commits/master)|[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/pulls)|[![GitHub issues](https://img.shields.io/github/issues/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/issues)|[![GitHub forks](https://img.shields.io/github/forks/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/network)|[![GitHub stars](https://img.shields.io/github/stars/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/stargazers)|
 |  **GitHub**     |![GitHub top language](https://img.shields.io/github/languages/top/anantharajuc/LLM-Vision-Capabilities.svg)|
+
+## Details
+  
+- [Getting Started](GETTING_STARTED.MD)
+
 ## Features
 
 - Uses models like `llama3.2-vision` and `qwen2.5vl` via the Ollama API
@@ -72,68 +77,6 @@ While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-v
   - Color details
   - Confidence score
   - Metadata like inference time
-
-## Requirements
-
-- Python 3.6+
-- [Ollama](https://ollama.com) installed and running locally
-- Required Python packages:
-  - `requests`
-  - `Pillow`
-  - `ollama` (Ollama Python SDK)
-
-## Installation
-
-```bash
-pip install requests pillow ollama
-```
-
-Ensure Ollama is installed and running:
-
-```bash
-ollama serve
-```
-
-Then pull the desired vision model(s):
-
-```bash
-ollama pull llama3.2-vision
-ollama pull qwen2.5vl
-```
-
-## Setup
-
-```commandline
-CREATE TABLE crop_detection_results
-(
-    `crop` String,
-    `alternate_names` Array(String),
-    `color` Array(String),
-    `confidence` Float32,
-    `startDateTime` DateTime,
-    `endDateTime` DateTime,
-    `duration` Float32
-)
-ENGINE = MergeTree
-ORDER BY startDateTime
-```
-
-## Usage
-
-```bash
-python3 LLM-Vision-Capabilities.py <model_name> <image_path>
-```
-
-### Examples
-
-```bash
-python3 LLM-Vision-Capabilities.py llama3.2-vision:latest /home/user/image.jpg
-python3 LLM-Vision-Capabilities.py qwen2.5vl:latest /home/user/image.jpg
-```
-
-If no arguments are passed, defaults will be used:
-- Model: `qwen2.5vl:latest`
-- Image: `demo.jpg`
 
 ## Demo Image
 

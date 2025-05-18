@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load variables from .env file
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -19,10 +22,10 @@ PROMPT = (
 )
 
 CLICKHOUSE_CONFIG = {
-    'host': 'localhost',
-    'port': 9000,
-    'user': 'default',
-    'password': 'root',
-    'database': 'default',
-    'table': 'crop_detection_results'
+    'host': os.getenv('CLICKHOUSE_HOST'),
+    'port': int(os.getenv('CLICKHOUSE_PORT', 9000)),
+    'user': os.getenv('CLICKHOUSE_USER'),
+    'password': os.getenv('CLICKHOUSE_PASSWORD'),
+    'database': os.getenv('CLICKHOUSE_DATABASE'),
+    'table': os.getenv('CLICKHOUSE_TABLE')
 }

@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2a168218-87e6-4448-8277-a3ff4ed95f67" name="Changes" comment="Initial Commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_tracker/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/clickhouse_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_tracker/db/clickhouse_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_tracker/image_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_tracker/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ollama_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_tracker/ollama_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop_detector/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +37,7 @@
   &quot;keyToString&quot;: {
     &quot;Python.LLM-Vision-Capabilities.executor&quot;: &quot;Run&quot;,
     &quot;Python.l2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -176,6 +173,9 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
