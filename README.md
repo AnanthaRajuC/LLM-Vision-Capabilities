@@ -4,34 +4,6 @@
 *** or simply open an issue with the tag "enhancement".
 *** Thanks again!
 -->
-# LLM-Vision-Capabilities
-
-This Python script allows you to identify crops in an image using [Ollama](https://ollama.com/) server to run vision-enabled LLMs locally, such as `llama3.2-vision` or `qwen2.5vl`, without relying on the Hugging Face Transformers library or cloud-based APIs.
-
-It sends an image and a predefined JSON-format prompt to a selected vision model running locally via Ollama, and returns structured information about the crop detected in the image.
-
-```text
-Identify the crop in this image and respond ONLY in the following JSON format:
-
-{
-  "crop": "<primary crop name>",
-  "alternate_names": ["<alternate name 1>", "<alternate name 2>"],
-  "color": ["<color 1>", "<color 2>"],
-  "confidence": <confidence score from 0 to 1>
-}
-
-If any field is not known, return an empty list or null value as appropriate. Do not include any other text.
-```
-
-## Model Recommendation
-
-While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-vision:latest`, `qwen2.5vl:latest` is recommended based on local testing due to:
-
-- Reasonable inference times
-- Reliable structured JSON responses
-- Decent resource usage on a typical commodity laptop
-
-⚠️ **Note:** These observations are based on running the models locally on a standard laptop. Performance and accuracy may vary depending on your system's hardware (CPU, GPU, RAM, etc.).
 
 <div align="center">
 
@@ -63,6 +35,35 @@ While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-v
 |-----------------|-------|-------|-------|-------|-------|
 |  **GitHub**     |[![GitHub last commit](https://img.shields.io/github/last-commit/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/commits/master)|[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/pulls)|[![GitHub issues](https://img.shields.io/github/issues/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/issues)|[![GitHub forks](https://img.shields.io/github/forks/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/network)|[![GitHub stars](https://img.shields.io/github/stars/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/stargazers)|
 |  **GitHub**     |![GitHub top language](https://img.shields.io/github/languages/top/anantharajuc/LLM-Vision-Capabilities.svg)|
+
+# LLM-Vision-Capabilities
+
+This Python script allows you to identify crops in an image using [Ollama](https://ollama.com/) server to run vision-enabled LLMs locally, such as `llama3.2-vision` or `qwen2.5vl`, without relying on the Hugging Face Transformers library or cloud-based APIs.
+
+It sends an image and a predefined JSON-format prompt to a selected vision model running locally via Ollama, and returns structured information about the crop detected in the image.
+
+```text
+Identify the crop in this image and respond ONLY in the following JSON format:
+
+{
+  "crop": "<primary crop name>",
+  "alternate_names": ["<alternate name 1>", "<alternate name 2>"],
+  "color": ["<color 1>", "<color 2>"],
+  "confidence": <confidence score from 0 to 1>
+}
+
+If any field is not known, return an empty list or null value as appropriate. Do not include any other text.
+```
+
+## Model Recommendation
+
+While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-vision:latest`, `qwen2.5vl:latest` is recommended based on local testing due to:
+
+- Reasonable inference times
+- Reliable structured JSON responses
+- Decent resource usage on a typical commodity laptop
+
+⚠️ **Note:** These observations are based on running the models locally on a standard laptop. Performance and accuracy may vary depending on your system's hardware (CPU, GPU, RAM, etc.).
 
 ## Details
   
