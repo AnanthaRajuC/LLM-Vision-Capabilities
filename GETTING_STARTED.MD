@@ -28,15 +28,56 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 ~~~sql
 -- create table in default schema
 
-CREATE TABLE crop_detection_results
+CREATE TABLE crop_analysis_results
 (
-    `crop` String,
-    `alternate_names` Array(String),
-    `color` Array(String),
-    `confidence` Float32,
-    `startDateTime` DateTime,
-    `endDateTime` DateTime,
-    `duration` Float32
+    -- Basic crop identification
+    crop String,                                        -- Primary crop name
+    alternate_names Array(String),                      -- Alternate/common names
+    color Array(String),                                -- Dominant crop colors
+    confidence Float32,                                 -- Model confidence (0 to 1)
+    -- Growth stage
+    growth_stage String,                                -- Crop stage: seedling/vegetative/etc.
+    estimated_age_months Nullable(Float32),             -- Approximate crop age
+    growth_description String,                          -- Description of growth stage
+    -- Health assessment
+    overall_health String,                              -- Health rating: excellent/good/fair/poor
+    vigor_score Float32,                                -- Vigor score (0 to 1)
+    disease_indicators Array(String),                   -- Detected diseases
+    pest_indicators Array(String),                      -- Detected pest damage
+    stress_indicators Array(String),                    -- Stress signs: drought/nutrient/etc.
+    -- Field characteristics
+    planting_pattern String,                            -- Row/scattered/etc.
+    plant_density String,                               -- Low/medium/high
+    field_size_estimate String,                         -- Field size category
+    crop_uniformity String,                             -- Uniform/mixed/irregular
+    weed_presence String,                               -- Weed level
+    -- Environmental context
+    setting String,                                     -- Rural/urban/greenhouse/etc.
+    terrain String,                                     -- Flat/sloped/etc.
+    surrounding_vegetation String,                      -- Trees/other crops/buildings
+    infrastructure_visible Array(String),               -- Irrigation/equipment/etc.
+    weather_conditions String,                          -- Clear/cloudy/wet/dry
+    -- Growing conditions
+    moisture_level String,                              -- Soil moisture state
+    soil_visibility String,                             -- Visibility of soil in image
+    irrigation_evidence String,                         -- Sprinkler/drip/furrow/etc.
+    season_indication String,                           -- Growing/dormant/harvest_time
+    -- Agricultural insights
+    farming_type String,                                -- Commercial/subsistence/experimental
+    management_quality String,                          -- Farm management quality
+    harvest_readiness String,                           -- Crop readiness for harvest
+    estimated_months_to_harvest Nullable(Float32),      -- Remaining time to harvest
+    -- Recommendations
+    recommendations Array(String),                      -- Suggested farming actions
+    -- Metadata
+    image_quality String,                               -- Image quality rating
+    lighting_conditions String,                         -- Natural/artificial/low light
+    viewing_angle String,                               -- Aerial/ground/close-up
+    coverage_area String,                               -- Single plant / field overview
+    -- Timestamps
+    startDateTime DateTime,                             -- Analysis start time
+    endDateTime DateTime,                               -- Analysis end time
+    duration Float32                                     -- Duration in seconds (end - start)
 )
 ENGINE = MergeTree
 ORDER BY startDateTime;
@@ -88,6 +129,19 @@ To get started, you'll need Python installed on your machine (preferably Python 
    ```
 
    This downloads the models and makes them available for use in your local environment.
+
+---
+
+## 🧠 Prompt Configuration
+
+The app uses two levels of prompt complexity, stored externally as text files under `assets/prompts/`:
+
+### Available Prompts
+
+| Prompt Level | File Path                             | Description                                  |
+|--------------|---------------------------------------|----------------------------------------------|
+| Basic        | `assets/prompts/crop_detection.txt`   | Identifies crop, colors, and confidence only |
+| Detailed     | `assets/prompts/crop_analysis.txt`    | Full image-based agricultural assessment     |
 
 ---
 

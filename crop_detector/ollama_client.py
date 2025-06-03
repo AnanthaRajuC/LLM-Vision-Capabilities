@@ -3,6 +3,15 @@ import ollama
 from crop_detector.config import OLLAMA_URL
 
 def check_ollama_status() -> bool:
+    """
+    Check if Ollama server is running and accessible.
+
+    Args:
+        url: Ollama server URL
+
+    Returns:
+        bool: True if server is running, False otherwise
+    """
     try:
         requests.get(f"{OLLAMA_URL}/api/tags", timeout=2)
         print(f"Ollama is running at {OLLAMA_URL}\n")

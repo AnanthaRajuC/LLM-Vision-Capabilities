@@ -1,0 +1,10 @@
+Identify the crop in this image and respond ONLY in the following JSON format:
+
+{
+  "crop": "<primary crop name>",
+  "alternate_names": ["<alternate name 1>", "<alternate name 2>"],
+  "color": ["<color 1>", "<color 2>"],
+  "confidence": <confidence score from 0 to 1>
+}
+
+If any field is not known, return an empty list or null value as appropriate. Do not include any other text.

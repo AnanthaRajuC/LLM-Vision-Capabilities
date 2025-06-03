@@ -8,18 +8,20 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 OLLAMA_URL = "http://localhost:11434"
 
 DEFAULT_MODEL_NAME = "qwen2.5vl:latest"
-DEFAULT_IMAGE_PATH = os.path.join(SCRIPT_DIR,"assets","demo.jpg")
+DEFAULT_IMAGE_PATH = os.path.join(SCRIPT_DIR,"assets","images","demo.jpg")
 
-PROMPT = (
-    "Identify the crop in this image and respond ONLY in the following JSON format:\n\n"
-    "{\n"
-    "  \"crop\": \"<primary crop name>\",\n"
-    "  \"alternate_names\": [\"<alternate name 1>\", \"<alternate name 2>\"],\n"
-    "  \"color\": [\"<color 1>\", \"<color 2>\"],\n"
-    "  \"confidence\": <confidence score from 0 to 1>\n"
-    "}\n\n"
-    "If any field is not known, return an empty list or null value as appropriate. Do not include any other text."
-)
+PROMPT_TYPE = "detailed"
+
+PROMPT_FILE = {
+    "basic": "crop_detection.txt",
+    "detailed": "crop_analysis.txt"
+}.get(PROMPT_TYPE, "crop_detection.txt")
+
+PROMPT_PATH = os.path.join(SCRIPT_DIR, "assets", "prompts", PROMPT_FILE)
+
+# Load prompt from file
+with open(PROMPT_PATH, "r", encoding="utf-8") as f:
+    PROMPT = f.read()
 
 CLICKHOUSE_CONFIG = {
     'host': os.getenv('CLICKHOUSE_HOST'),
@@ -27,5 +29,6 @@ CLICKHOUSE_CONFIG = {
     'user': os.getenv('CLICKHOUSE_USER'),
     'password': os.getenv('CLICKHOUSE_PASSWORD'),
     'database': os.getenv('CLICKHOUSE_DATABASE'),
-    'table': os.getenv('CLICKHOUSE_TABLE')
+    'table_crop_analysis': os.getenv('CLICKHOUSE_CROP_ANALYSIS_TABLE'),
+    'table_crop_detection': os.getenv('CLICKHOUSE_CROP_DETECTION_TABLE')
 }

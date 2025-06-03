@@ -1,12 +1,19 @@
+#!/usr/bin/env python3
+"""
+Crop Detection System using Qwen 2.5 Vision LLM
+Identifies crops in images and stores results in ClickHouse
+"""
+
 import sys
 import json
 from datetime import datetime
 
-from crop_detector.config import DEFAULT_MODEL_NAME, DEFAULT_IMAGE_PATH, PROMPT, CLICKHOUSE_CONFIG
+from crop_detector.config import DEFAULT_MODEL_NAME, DEFAULT_IMAGE_PATH, PROMPT, CLICKHOUSE_CONFIG, PROMPT_TYPE
 
 from crop_detector.image_utils import encode_image
 from ollama_client import check_ollama_status, call_model
-from crop_detector.db.clickhouse_client import save_to_clickhouse
+from crop_detector.db.clickhouse_client import save_to_clickhouse_basic
+from crop_detector.db.clickhouse_client import save_to_clickhouse_detailed
 
 # Parse CLI arguments
 model_name = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_MODEL_NAME
@@ -56,7 +63,14 @@ print(json.dumps(result_json, indent=2))
 if save_to_db:
     try:
         print("Saving result to ClickHouse")
-        save_to_clickhouse(CLICKHOUSE_CONFIG, result_json)
+
+        # Use the appropriate save function based on PROMPT_TYPE
+        if PROMPT_TYPE == "basic":
+            save_to_clickhouse_basic(CLICKHOUSE_CONFIG, result_json)
+        else:
+            save_to_clickhouse_detailed(CLICKHOUSE_CONFIG, result_json)
+
         print("Saved to ClickHouse successfully.")
     except Exception as e:
         print(f"Failed to save to ClickHouse: {e}")
+

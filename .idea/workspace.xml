@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a168218-87e6-4448-8277-a3ff4ed95f67" name="Changes" comment="Initial Commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GETTING_STARTED.MD" beforeDir="false" afterPath="$PROJECT_DIR$/GETTING_STARTED.MD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop_detector/.env" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop_detector/assets/demo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop_detector/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop_detector/db/clickhouse_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/db/clickhouse_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop_detector/image_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/image_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop_detector/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop_detector/ollama_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/ollama_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,22 +35,22 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2xD3w83Lo0aoxShhEK7zWV52JCp" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.LLM-Vision-Capabilities.executor&quot;: &quot;Run&quot;,
-    &quot;Python.l2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.LLM-Vision-Capabilities.executor": "Run",
+    "Python.l2.executor": "Run",
+    "Python.main (1).executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/crop_tracker" />
@@ -148,7 +157,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-4f4e415b4190-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.26053.29" />
+        <option value="bundled-python-sdk-dfff61a61320-9cdd278e9d02-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.25410.159" />
       </set>
     </attachedChunks>
   </component>
