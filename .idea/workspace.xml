@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a168218-87e6-4448-8277-a3ff4ed95f67" name="Changes" comment="Initial Commit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GETTING_STARTED.MD" beforeDir="false" afterPath="$PROJECT_DIR$/GETTING_STARTED.MD" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop_detector/.env" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop_detector/assets/demo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop_detector/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop_detector/db/clickhouse_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/db/clickhouse_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop_detector/image_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/image_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop_detector/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop_detector/ollama_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_detector/ollama_client.py" afterDir="false" />
-    </list>
+    <list default="true" id="2a168218-87e6-4448-8277-a3ff4ed95f67" name="Changes" comment="Initial Commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

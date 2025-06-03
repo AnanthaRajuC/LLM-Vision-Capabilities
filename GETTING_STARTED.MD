@@ -23,7 +23,24 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 
 ### Prerequisites
 
-*	You need to have **CickHouse** installed on your machine to persist the results. Using `DBeaver` or on any other ClickHouse client/console, create a database/schema/table named `crop_detection_results`. 
+*	You need to have **CickHouse** installed on your machine to persist the results. Using `DBeaver` or on any other ClickHouse client/console, create a database/schema/table named `crop_detection_results` and `crop_analysis_results`. 
+
+~~~sql
+-- create table in default schema
+
+CREATE TABLE crop_detection_results
+(
+    `crop` String,
+    `alternate_names` Array(String),
+    `color` Array(String),
+    `confidence` Float32,
+    `startDateTime` DateTime,
+    `endDateTime` DateTime,
+    `duration` Float32
+)
+ENGINE = MergeTree
+ORDER BY startDateTime;
+~~~
 
 ~~~sql
 -- create table in default schema

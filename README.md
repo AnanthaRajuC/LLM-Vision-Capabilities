@@ -87,6 +87,7 @@ While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-v
 
 The result is a structured JSON response, like:
 
+Crop Detection
 ```json
 {
   "crop": "peanut",
@@ -106,6 +107,85 @@ The result is a structured JSON response, like:
   }
 }
 ```
+
+Crop Analysis
+```json
+{
+  "crop": "Sugarcane",
+  "alternate_names": [
+    "Sugar cane",
+    "Saccharum officinarum"
+  ],
+  "color": [
+    "green",
+    "brown"
+  ],
+  "confidence": 0.9,
+  "growth_stage": {
+    "stage": "vegetative",
+    "estimated_age_months": 3,
+    "description": "The sugarcane plants are in the vegetative stage, with tall, green leaves indicating growth but not yet flowering or fruiting."
+  },
+  "health_assessment": {
+    "overall_health": "good",
+    "vigor_score": 0.8,
+    "disease_indicators": [
+      "none"
+    ],
+    "pest_indicators": [
+      "none"
+    ],
+    "stress_indicators": [
+      "none_detected"
+    ]
+  },
+  "field_characteristics": {
+    "planting_pattern": "rows",
+    "plant_density": "medium",
+    "field_size_estimate": "medium_field",
+    "crop_uniformity": "uniform",
+    "weed_presence": "none"
+  },
+  "environmental_context": {
+    "setting": "rural",
+    "terrain": "flat",
+    "surrounding_vegetation": "trees",
+    "infrastructure_visible": [
+      "irrigation"
+    ],
+    "weather_conditions": "clear"
+  },
+  "growing_conditions": {
+    "moisture_level": "adequate",
+    "soil_visibility": "partially_visible",
+    "irrigation_evidence": "sprinklers",
+    "season_indication": "growing_season"
+  },
+  "agricultural_insights": {
+    "farming_type": "commercial",
+    "management_quality": "good",
+    "harvest_readiness": "not_ready",
+    "estimated_months_to_harvest": 9
+  },
+  "recommendations": [
+    "Implement a regular irrigation schedule to ensure consistent moisture levels.",
+    "Monitor for any signs of pests or diseases and take preventive measures if necessary.",
+    "Continue with the current planting pattern and density to maintain uniform growth."
+  ],
+  "image_metadata": {
+    "image_quality": "good",
+    "lighting_conditions": "natural_daylight",
+    "viewing_angle": "ground_level",
+    "coverage_area": "field_overview"
+  },
+  "metadata": {
+    "startDateTime": "2025-06-03T18:00:40.672017",
+    "endDateTime": "2025-06-03T18:01:55.492056",
+    "duration": 74.82
+  }
+}
+```
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
