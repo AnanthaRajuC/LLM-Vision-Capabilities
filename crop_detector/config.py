@@ -10,7 +10,7 @@ OLLAMA_URL = "http://localhost:11434"
 DEFAULT_MODEL_NAME = "qwen2.5vl:latest"
 DEFAULT_IMAGE_PATH = os.path.join(SCRIPT_DIR,"assets","images","demo.jpg")
 
-PROMPT_TYPE = "detailed"
+PROMPT_TYPE = "basic"
 
 PROMPT_FILE = {
     "basic": "crop_detection.txt",

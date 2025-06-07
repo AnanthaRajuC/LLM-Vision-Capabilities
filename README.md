@@ -42,6 +42,17 @@ This Python script allows you to identify crops in an image using [Ollama](https
 
 It sends an image and a predefined JSON-format prompt to a selected vision model running locally via Ollama, and returns structured information about the crop detected in the image.
 
+By default, it uses a basic prompt, but more detailed prompts (e.g., for disease detection or richer output) can be saved as `.txt` files inside the `assets/` directory. You can create multiple prompt types such as:
+
+- [basic_prompt.txt](/assets/prompts/crop_detection.txt)
+- [detailed_prompt.txt](/assets/prompts/crop_ananlysis.txt)
+- multi_crop_prompt.txt
+- etc.
+
+These prompts are dynamically loaded and sent to the model, allowing customization without modifying code.
+
+#### Example JSON Prompt Template
+
 ```text
 Identify the crop in this image and respond ONLY in the following JSON format:
 
@@ -68,6 +79,7 @@ While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-v
 ## Details
   
 - [Getting Started](GETTING_STARTED.MD)
+- [Pipeline](PIPELINE.MD)
 
 ## Features
 
@@ -90,20 +102,20 @@ The result is a structured JSON response, like:
 Crop Detection
 ```json
 {
-  "crop": "peanut",
+  "crop": "Sugarcane",
   "alternate_names": [
-    "groundnut",
-    "earthnut"
+    "Sugar cane",
+    "Cane"
   ],
   "color": [
-    "brown",
-    "green"
+    "Green",
+    "Brown"
   ],
   "confidence": 0.95,
   "metadata": {
-    "startDateTime": "2025-05-17T11:05:47.702582",
-    "endDateTime": "2025-05-17T11:09:09.020386",
-    "duration": 201.32
+    "startDateTime": "2025-06-07T20:58:35.196729",
+    "endDateTime": "2025-06-07T21:00:36.916434",
+    "duration": 121.72
   }
 }
 ```

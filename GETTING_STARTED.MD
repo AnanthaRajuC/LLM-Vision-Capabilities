@@ -11,14 +11,19 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 ```text
 .
 ├── crop_detector
-│   ├── assets
-│   │   └── demo.jpg
-│   ├── db
-│   │   └── clickhouse_client.py
-│   ├── config.py
-│   ├── images_util.py
-│   ├── main.py
+│   ├── assets/
+│   │  ├── images/
+│   │  │   └── demo.jpg
+│   │  └── prompts/
+│   │      ├── crop_analysis.txt
+│   │      └── crop_detection.txt
+│   ├── db/
+│   │   └── clickhouse_client.py          # ClickHouse storage functions
+│   ├── config.py                         # Configs and env
+│   ├── images_util.py                    # Image encoding
+│   ├── main.py                           # Unified entry point
 │   └── ollama_client.py
+└── .env                                  # ClickHouse credentials
 ```
 
 ### Prerequisites
