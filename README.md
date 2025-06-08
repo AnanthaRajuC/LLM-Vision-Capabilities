@@ -5,6 +5,8 @@
 *** Thanks again!
 -->
 
+![Banner GIF](crop_detector/assets/LLM-Vision-Capabilities.gif)
+
 <div align="center">
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen?logo=github)](CODE_OF_CONDUCT.md) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Checkout+this+recipe+for+LLM+Vision&url=https://github.com/AnanthaRajuC/LLM-Vision-Capabilities&hashtags=LLM) [![Twitter Follow](https://img.shields.io/twitter/follow/anantharajuc?label=follow%20me&style=social)](https://twitter.com/anantharajuc)
@@ -36,6 +38,19 @@
 |  **GitHub**     |[![GitHub last commit](https://img.shields.io/github/last-commit/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/commits/master)|[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/pulls)|[![GitHub issues](https://img.shields.io/github/issues/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/issues)|[![GitHub forks](https://img.shields.io/github/forks/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/network)|[![GitHub stars](https://img.shields.io/github/stars/anantharajuc/LLM-Vision-Capabilities)](https://github.com/anantharajuc/LLM-Vision-Capabilities/stargazers)|
 |  **GitHub**     |![GitHub top language](https://img.shields.io/github/languages/top/anantharajuc/LLM-Vision-Capabilities.svg)|[![License](https://img.shields.io/badge/license-MIT-orange)](https://opensource.org/licenses/MIT)
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#llm-vision-capabilities">About The Project</a></li>
+    <li><a href="#model-recommendation">Model Recommendation</a></li>
+    <li><a href="#output">Smple Output</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
 # LLM-Vision-Capabilities
 
 This Python script allows you to identify crops in an image using [Ollama](https://ollama.com/) server to run vision-enabled LLMs locally, such as `llama3.2-vision` or `qwen2.5vl`, without relying on the Hugging Face Transformers library or cloud-based APIs.
@@ -44,12 +59,14 @@ It sends an image and a predefined JSON-format prompt to a selected vision model
 
 By default, it uses a basic prompt, but more detailed prompts (e.g., for disease detection or richer output) can be saved as `.txt` files inside the `assets/` directory. You can create multiple prompt types such as:
 
-- [basic_prompt.txt](/assets/prompts/crop_detection.txt)
-- [detailed_prompt.txt](/assets/prompts/crop_ananlysis.txt)
+- [basic_prompt.txt](/crop_detector/assets/prompts/crop_detection.txt)
+- [detailed_prompt.txt](/crop_detector/assets/prompts/crop_ananlysis.txt)
 - multi_crop_prompt.txt
 - etc.
 
 These prompts are dynamically loaded and sent to the model, allowing customization without modifying code.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 #### Example JSON Prompt Template
 
@@ -93,7 +110,7 @@ While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-v
 
 ## Demo Image
 
-![Demo Image](crop_detector/assets/images/demo.jpg)
+![Demo Image](crop_detector/assets/images/demo2.jpg)
 
 ## Output
 
@@ -254,6 +271,6 @@ This Project uses GitHub's integrated issue tracking system to record bugs and f
 
 Distributed under the MIT License. See [LICENSE.md](/LICENSE) for more information.
 
-## Author
+## Contact
 
 Anantha Raju C - [@anantharajuc](https://twitter.com/anantharajuc) - arcswdev@gmail.com
