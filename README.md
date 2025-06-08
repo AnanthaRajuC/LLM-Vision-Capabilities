@@ -1,3 +1,4 @@
+<a id="readme-top"></a>
 <!--
 *** Thanks for checking out LLM-Vision-Capabilities. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -60,13 +61,11 @@ It sends an image and a predefined JSON-format prompt to a selected vision model
 By default, it uses a basic prompt, but more detailed prompts (e.g., for disease detection or richer output) can be saved as `.txt` files inside the `assets/` directory. You can create multiple prompt types such as:
 
 - [basic_prompt.txt](/crop_detector/assets/prompts/crop_detection.txt)
-- [detailed_prompt.txt](/crop_detector/assets/prompts/crop_ananlysis.txt)
+- [detailed_prompt.txt](/crop_detector/assets/prompts/crop_analysis.txt)
 - multi_crop_prompt.txt
 - etc.
 
 These prompts are dynamically loaded and sent to the model, allowing customization without modifying code.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 #### Example JSON Prompt Template
 
@@ -82,6 +81,8 @@ Identify the crop in this image and respond ONLY in the following JSON format:
 
 If any field is not known, return an empty list or null value as appropriate. Do not include any other text.
 ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Model Recommendation
 
@@ -149,31 +150,34 @@ Crop Analysis
     "green",
     "brown"
   ],
-  "confidence": 0.9,
+  "confidence": 0.95,
+  "overall_description": "The image shows a field of sugarcane with tall, green stalks growing in rows. The field appears to be in a vegetative growth stage, with no visible signs of flowering or fruiting. The soil is visible and appears to be well-tended, indicating a managed agricultural setting.",
   "growth_stage": {
     "stage": "vegetative",
-    "estimated_age_months": 3,
-    "description": "The sugarcane plants are in the vegetative stage, with tall, green leaves indicating growth but not yet flowering or fruiting."
+    "estimated_age_months": 6,
+    "description": "The sugarcane plants are tall and have a uniform height, indicating they are in the vegetative stage of growth. The presence of young leaves suggests they are not yet mature enough to flower or bear fruit."
   },
   "health_assessment": {
     "overall_health": "good",
-    "vigor_score": 0.8,
+    "vigor_score": 0.85,
     "disease_indicators": [
-      "none"
+      "empty list"
     ],
     "pest_indicators": [
-      "none"
+      "empty list"
     ],
     "stress_indicators": [
       "none_detected"
-    ]
+    ],
+    "health_description": "The sugarcane plants appear healthy with no visible signs of disease or pest damage. The leaves are green and there are no signs of yellowing or wilting, indicating good vigor and health."
   },
   "field_characteristics": {
     "planting_pattern": "rows",
     "plant_density": "medium",
     "field_size_estimate": "medium_field",
     "crop_uniformity": "uniform",
-    "weed_presence": "none"
+    "weed_presence": "none",
+    "field_description": "The sugarcane is planted in neat rows, with a consistent spacing between plants. The field appears to be well-maintained, with no visible weeds or other vegetation competing for resources."
   },
   "environmental_context": {
     "setting": "rural",
@@ -182,36 +186,50 @@ Crop Analysis
     "infrastructure_visible": [
       "irrigation"
     ],
-    "weather_conditions": "clear"
+    "weather_conditions": "clear",
+    "environment_description": "The field is located in a rural area with a flat terrain and surrounded by trees. There is evidence of irrigation infrastructure, suggesting the field is well-supplied with water. The weather appears clear, indicating favorable growing conditions."
   },
   "growing_conditions": {
     "moisture_level": "adequate",
-    "soil_visibility": "partially_visible",
-    "irrigation_evidence": "sprinklers",
-    "season_indication": "growing_season"
+    "soil_visibility": "clearly_visible",
+    "irrigation_evidence": "irrigation",
+    "season_indication": "growing_season",
+    "conditions_description": "The soil is clearly visible and appears to be well-moistened, indicating adequate irrigation. The growing conditions suggest it is the growing season, with no signs of drought or waterlogging."
   },
   "agricultural_insights": {
     "farming_type": "commercial",
     "management_quality": "good",
     "harvest_readiness": "not_ready",
-    "estimated_months_to_harvest": 9
+    "estimated_months_to_harvest": null,
+    "management_description": "The sugarcane field is managed with a focus on irrigation, as evidenced by the visible infrastructure. The uniform planting and healthy appearance suggest a good level of management. The field is not yet ready for harvest, as the plants are still in the vegetative stage."
   },
   "recommendations": [
-    "Implement a regular irrigation schedule to ensure consistent moisture levels.",
-    "Monitor for any signs of pests or diseases and take preventive measures if necessary.",
-    "Continue with the current planting pattern and density to maintain uniform growth."
+    "Continue with current irrigation practices to ensure adequate moisture levels.",
+    "Monitor the field for any signs of pests or diseases and take preventive measures if necessary.",
+    "Prepare the field for harvest when the sugarcane reaches the mature stage."
   ],
+  "recommendations_summary": "The sugarcane field is in good health and well-managed, with adequate irrigation and uniform planting. The field is not yet ready for harvest, and continued monitoring and irrigation practices are recommended to ensure optimal growth and yield.",
   "image_metadata": {
     "image_quality": "good",
     "lighting_conditions": "natural_daylight",
     "viewing_angle": "ground_level",
-    "coverage_area": "field_overview"
+    "coverage_area": "field_overview",
+    "visual_description": "The image provides a clear overview of the sugarcane field, showing the rows of plants and the surrounding environment."
   },
+  "semantic_tags": [
+    "sugarcane",
+    "vegetative_stage",
+    "agricultural_management",
+    "irrigation",
+    "rural_setting"
+  ],
+  "search_context": "Sugarcane field in vegetative stage, good health, irrigation managed, rural setting, clear weather",
   "metadata": {
-    "startDateTime": "2025-06-03T18:00:40.672017",
-    "endDateTime": "2025-06-03T18:01:55.492056",
-    "duration": 74.82
-  }
+    "startDateTime": "2025-06-08T20:44:27.957857",
+    "endDateTime": "2025-06-08T20:50:47.604600",
+    "duration": 379.65
+  },
+  "text_description": "The image shows a Sugarcane crop with colors green, brown. It is in the vegetative stage and approximately 6 months old. Overall health is good, with stress indicators such as none_detected. The field is located in a rural area with flat terrain. Irrigation type is irrigation, and it's currently the growing_season."
 }
 ```
 

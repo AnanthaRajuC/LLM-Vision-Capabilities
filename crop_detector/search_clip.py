@@ -83,7 +83,7 @@ def search_images(text_query, image_folder, top_k=5, min_score=0.25):
 # Run it
 if __name__ == "__main__":
     search_images(
-        text_query="sugarcane",
+        text_query="tomato",
         image_folder="/home/anantharajuc/PycharmProjects/LLM-Vision-Capabilities/crop_detector/assets/images",
         top_k=3,
         min_score=0.25

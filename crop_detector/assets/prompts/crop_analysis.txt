@@ -5,11 +5,12 @@ You are an expert agricultural analyst. Analyze this crop image in detail and re
   "alternate_names": ["<alternate name 1>", "<alternate name 2>"],
   "color": ["<dominant color>", "<secondary color>"],
   "confidence": <confidence score from 0 to 1>,
+  "overall_description": "<comprehensive 2-3 sentence description of what you see in the image>",
 
   "growth_stage": {
     "stage": "<seedling/vegetative/flowering/fruiting/mature/harvest_ready>",
     "estimated_age_months": <number or null>,
-    "description": "<brief stage description>"
+    "description": "<detailed description of growth stage indicators visible>"
   },
 
   "health_assessment": {
@@ -17,7 +18,8 @@ You are an expert agricultural analyst. Analyze this crop image in detail and re
     "vigor_score": <score from 0 to 1>,
     "disease_indicators": ["<visible diseases or empty list>"],
     "pest_indicators": ["<visible pest damage or empty list>"],
-    "stress_indicators": ["<drought/nutrient_deficiency/waterlogging/none_detected>"]
+    "stress_indicators": ["<drought/nutrient_deficiency/waterlogging/none_detected>"],
+    "health_description": "<detailed description of plant health, leaf condition, color, and any visible issues>"
   },
 
   "field_characteristics": {
@@ -25,7 +27,8 @@ You are an expert agricultural analyst. Analyze this crop image in detail and re
     "plant_density": "<low/medium/high>",
     "field_size_estimate": "<small_plot/medium_field/large_commercial>",
     "crop_uniformity": "<uniform/mixed/irregular>",
-    "weed_presence": "<none/minimal/moderate/heavy>"
+    "weed_presence": "<none/minimal/moderate/heavy>",
+    "field_description": "<description of field layout, organization, spacing, and overall appearance>"
   },
 
   "environmental_context": {
@@ -33,21 +36,24 @@ You are an expert agricultural analyst. Analyze this crop image in detail and re
     "terrain": "<flat/sloped/terraced>",
     "surrounding_vegetation": "<trees/grass/other_crops/buildings>",
     "infrastructure_visible": ["<irrigation/storage/equipment/none>"],
-    "weather_conditions": "<clear/cloudy/wet/dry>"
+    "weather_conditions": "<clear/cloudy/wet/dry>",
+    "environment_description": "<description of the surrounding environment, landscape, and contextual elements>"
   },
 
   "growing_conditions": {
     "moisture_level": "<dry/adequate/wet/waterlogged>",
     "soil_visibility": "<not_visible/partially_visible/clearly_visible>",
     "irrigation_evidence": "<sprinklers/drip/furrow/not_visible>",
-    "season_indication": "<growing_season/dormant/harvest_time>"
+    "season_indication": "<growing_season/dormant/harvest_time>",
+    "conditions_description": "<description of soil conditions, moisture indicators, and seasonal factors>"
   },
 
   "agricultural_insights": {
     "farming_type": "<subsistence/commercial/experimental>",
     "management_quality": "<excellent/good/fair/poor>",
     "harvest_readiness": "<ready/nearly_ready/not_ready>",
-    "estimated_months_to_harvest": <number or null>
+    "estimated_months_to_harvest": <number or null>,
+    "management_description": "<description of farming practices, management quality indicators, and cultivation methods visible>"
   },
 
   "recommendations": [
@@ -55,13 +61,24 @@ You are an expert agricultural analyst. Analyze this crop image in detail and re
     "<actionable farming recommendation 2>",
     "<actionable farming recommendation 3>"
   ],
+  "recommendations_summary": "<consolidated summary of key recommendations and priority actions>",
 
   "image_metadata": {
     "image_quality": "<excellent/good/fair/poor>",
     "lighting_conditions": "<natural_daylight/artificial/low_light>",
     "viewing_angle": "<aerial/ground_level/close_up>",
-    "coverage_area": "<single_plant/small_area/field_overview>"
-  }
+    "coverage_area": "<single_plant/small_area/field_overview>",
+    "visual_description": "<description of image quality, perspective, and what areas are clearly visible>"
+  },
+
+  "semantic_tags": [
+    "<relevant agricultural keyword 1>",
+    "<relevant agricultural keyword 2>",
+    "<relevant agricultural keyword 3>",
+    "<relevant agricultural keyword 4>",
+    "<relevant agricultural keyword 5>"
+  ],
+  "search_context": "<natural language summary combining crop type, health status, growth stage, and key conditions for search indexing>"
 }
 
 ANALYSIS INSTRUCTIONS:
@@ -70,7 +87,10 @@ ANALYSIS INSTRUCTIONS:
 3. Assess field organization, planting patterns, and management practices
 4. Note environmental factors like terrain, weather, and surrounding elements
 5. Provide practical recommendations based on visible conditions
-6. Use null values for any field that cannot be determined from the image
-7. Ensure confidence scores reflect your certainty in each assessment
+6. Include detailed descriptions in each section for better semantic search capability
+7. Add semantic tags that capture key agricultural concepts
+8. Create a search context summary that combines multiple aspects
+9. Use null values for any field that cannot be determined from the image
+10. Ensure confidence scores reflect your certainty in each assessment
 
 Respond ONLY with the JSON object. No additional text or explanations.
