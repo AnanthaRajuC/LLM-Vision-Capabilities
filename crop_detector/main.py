@@ -14,34 +14,7 @@ from crop_detector.image_utils import encode_image
 from ollama_client import check_ollama_status, call_model
 from crop_detector.db.clickhouse_client import save_to_clickhouse_basic
 from crop_detector.db.clickhouse_client import save_to_clickhouse_detailed
-
-
-# ------------------------ Description Generator ------------------------
-def generate_description_from_json(data: dict) -> str:
-    try:
-        crop = data.get("crop", "Unknown crop")
-        color = ", ".join(data.get("color", []))
-        stage = data.get("growth_stage", {}).get("stage", "unknown")
-        age = data.get("growth_stage", {}).get("estimated_age_months", "N/A")
-        health = data.get("health_assessment", {}).get("overall_health", "unknown")
-        stress = ", ".join(data.get("health_assessment", {}).get("stress_indicators", []))
-        setting = data.get("environmental_context", {}).get("setting", "unknown")
-        terrain = data.get("environmental_context", {}).get("terrain", "unknown")
-        irrigation = data.get("growing_conditions", {}).get("irrigation_evidence", "unknown")
-        season = data.get("growing_conditions", {}).get("season_indication", "unknown")
-
-        description = (
-            f"The image shows a {crop} crop with colors {color}. "
-            f"It is in the {stage} stage and approximately {age} months old. "
-            f"Overall health is {health}, with stress indicators such as {stress}. "
-            f"The field is located in a {setting} area with {terrain} terrain. "
-            f"Irrigation type is {irrigation}, and it's currently the {season}."
-        )
-
-        return description
-    except Exception as e:
-        print(f"Error generating description: {e}")
-        return "Description unavailable."
+from crop_detector.db.clickhouse_client import save_to_clickhouse_with_embeddings
 
 # Parse CLI arguments
 model_name = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_MODEL_NAME
@@ -84,10 +57,6 @@ result_json['metadata'] = {
     'duration': round(duration, 2)
 }
 
-# Generate textual description
-print("Generating text description from JSON")
-result_json['text_description'] = generate_description_from_json(result_json)
-
 # Output result
 print(json.dumps(result_json, indent=2))
 
@@ -100,7 +69,8 @@ if save_to_db:
         if PROMPT_TYPE == "basic":
             save_to_clickhouse_basic(CLICKHOUSE_CONFIG, result_json)
         else:
-            save_to_clickhouse_detailed(CLICKHOUSE_CONFIG, result_json)
+            #save_to_clickhouse_detailed(CLICKHOUSE_CONFIG, result_json)
+            save_to_clickhouse_with_embeddings(CLICKHOUSE_CONFIG, result_json)
 
         print("Saved to ClickHouse successfully.")
     except Exception as e:
