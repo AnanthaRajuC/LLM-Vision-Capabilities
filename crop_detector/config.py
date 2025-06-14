@@ -14,7 +14,7 @@ PROMPT_TYPE = "detailed"
 
 PROMPT_FILE = {
     "basic": "crop_detection.txt",
-    "detailed": "crop_analysis.txt"
+    "detailed": "crop_analysis_20250614.txt"
 }.get(PROMPT_TYPE, "crop_detection.txt")
 
 PROMPT_PATH = os.path.join(SCRIPT_DIR, "assets", "prompts", PROMPT_FILE)

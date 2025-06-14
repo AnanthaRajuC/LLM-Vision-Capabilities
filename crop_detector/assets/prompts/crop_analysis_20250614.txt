@@ -56,45 +56,6 @@ You are an expert agricultural analyst. Analyze this crop image in detail and re
     "management_description": "<description of farming practices, management quality indicators, and cultivation methods visible>"
   },
 
-  "people_detection": {
-    "people_present": <true/false>,
-    "people_count": <number or 0>,
-    "people_description": "<description of people visible in the image, their activities, location in the field, or 'none detected'>",
-    "activities_observed": ["<farming activity 1>", "<farming activity 2>", "or empty list"],
-    "confidence_score": <confidence score from 0 to 1 for people detection>
-  },
-
-  "equipment_detection": {
-    "equipment_present": <true/false>,
-    "equipment_count": <number or 0>,
-    "equipment_types": ["<tractor>", "<harvester>", "<plow>", "<sprayer>", "<irrigation_system>", "or empty list"],
-    "equipment_description": "<detailed description of agricultural equipment visible, their condition, location in field, or 'none detected'>",
-    "equipment_condition": "<excellent/good/fair/poor/not_assessable>",
-    "equipment_usage": "<active/idle/abandoned/maintenance>",
-    "confidence_score": <confidence score from 0 to 1 for equipment detection>
-  },
-
-  "animal_detection": {
-    "animals_present": <true/false>,
-    "total_animal_count": <number or 0>,
-    "animal_categories": {
-      "cattle": <number or 0>,
-      "poultry": <number or 0>,
-      "goats": <number or 0>,
-      "sheep": <number or 0>,
-      "pigs": <number or 0>,
-      "horses": <number or 0>,
-      "other_livestock": <number or 0>,
-      "wild_animals": <number or 0>
-    },
-    "animal_types_identified": ["<cow>", "<chicken>", "<goat>", "<sheep>", "<pig>", "<horse>", "or empty list"],
-    "animal_description": "<detailed description of animals visible, their behavior, location, condition, or 'none detected'>",
-    "animal_activity": ["<grazing>", "<feeding>", "<resting>", "<moving>", "<foraging>", "or empty list"],
-    "animal_health_indicators": "<healthy/stressed/injured/not_assessable>",
-    "integration_with_crops": "<grazing_among_crops/separate_from_crops/mixed_farming_system/not_applicable>",
-    "confidence_score": <confidence score from 0 to 1 for animal detection>
-  },
-
   "recommendations": [
     "<actionable farming recommendation 1>",
     "<actionable farming recommendation 2>",
@@ -125,22 +86,11 @@ ANALYSIS INSTRUCTIONS:
 2. Look for signs of disease, pests, or stress (yellowing, spots, wilting, damage)
 3. Assess field organization, planting patterns, and management practices
 4. Note environmental factors like terrain, weather, and surrounding elements
-5. **Carefully scan the entire image for people - look for human figures, workers, farmers, or anyone present in the agricultural setting**
-6. **Count the number of people visible and describe their activities if observable (planting, harvesting, weeding, inspecting crops, etc.)**
-7. **Provide a confidence score for people detection based on image clarity and visibility**
-8. **Thoroughly examine the image for agricultural equipment and machinery - look for tractors, harvesters, plows, sprayers, irrigation systems, tillers, seeders, or any farming implements**
-9. **Count and categorize all visible equipment, assess their condition and current usage status**
-10. **Provide detailed descriptions and confidence scores for equipment detection**
-11. **Carefully scan for any animals in the agricultural setting - look for cattle, poultry (chickens, ducks, geese), goats, sheep, pigs, horses, or other livestock**
-12. **Also check for wild animals that might be present in or around the farming area**
-13. **Count animals by category, describe their behavior, health indicators, and their relationship to the crops (grazing, separate enclosures, mixed farming)**
-14. **Assess whether animals are part of an integrated farming system or separate from crop production**
-15. **Provide confidence scores for animal detection and identification**
-16. Provide practical recommendations based on visible conditions
-12. Include detailed descriptions in each section for better semantic search capability
-13. Add semantic tags that capture key agricultural concepts
-14. Create a search context summary that combines multiple aspects
-15. Use null values for any field that cannot be determined from the image
-16. Ensure confidence scores reflect your certainty in each assessment
+5. Provide practical recommendations based on visible conditions
+6. Include detailed descriptions in each section for better semantic search capability
+7. Add semantic tags that capture key agricultural concepts
+8. Create a search context summary that combines multiple aspects
+9. Use null values for any field that cannot be determined from the image
+10. Ensure confidence scores reflect your certainty in each assessment
 
 Respond ONLY with the JSON object. No additional text or explanations.

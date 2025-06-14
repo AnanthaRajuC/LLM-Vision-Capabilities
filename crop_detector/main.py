@@ -70,7 +70,7 @@ if save_to_db:
             save_to_clickhouse_basic(CLICKHOUSE_CONFIG, result_json)
         else:
             #save_to_clickhouse_detailed(CLICKHOUSE_CONFIG, result_json)
-            save_to_clickhouse_with_embeddings(CLICKHOUSE_CONFIG, result_json)
+            save_to_clickhouse_with_embeddings(CLICKHOUSE_CONFIG, result_json, image_path)
 
         print("Saved to ClickHouse successfully.")
     except Exception as e:

@@ -61,6 +61,12 @@ def save_to_clickhouse_detailed(config: dict, data: dict, image_path: str = None
 
             farming_type, management_quality, harvest_readiness, estimated_months_to_harvest, management_description,
 
+            people_present, people_count, people_description, activities_observed, people_confidence_score,
+
+            equipment_present, equipment_count, equipment_types, equipment_description, equipment_condition, equipment_usage, equipment_confidence_score,
+
+            animals_present, total_animal_count, cattle_count, poultry_count, goats_count, sheep_count, pigs_count, horses_count, other_livestock_count, wild_animals_count, animal_types_identified, animal_description, animal_activity, animal_health_indicators, integration_with_crops, animals_confidence_score,
+
             recommendations, recommendations_summary,
 
             semantic_tags, search_context,
@@ -121,6 +127,40 @@ def save_to_clickhouse_detailed(config: dict, data: dict, image_path: str = None
         data['agricultural_insights']['harvest_readiness'],
         data['agricultural_insights']['estimated_months_to_harvest'],
         data['agricultural_insights'].get('management_description', ''),
+
+        # People detection
+        data['people_detection']['people_present'],
+        data['people_detection']['people_count'],
+        data['people_detection'].get('people_description', ''),
+        data['people_detection']['activities_observed'],
+        data['people_detection']['confidence_score'],
+
+        # Equipment detection
+        data['equipment_detection']['equipment_present'],
+        data['equipment_detection']['equipment_count'],
+        data['equipment_detection']['equipment_types'],
+        data['equipment_detection'].get('equipment_description', ''),
+        data['equipment_detection']['equipment_condition'],
+        data['equipment_detection']['equipment_usage'],
+        data['equipment_detection']['confidence_score'],
+
+        # Animal detection
+        data['animal_detection']['animals_present'],
+        data['animal_detection']['total_animal_count'],
+        data['animal_detection']['animal_categories']['cattle'],
+        data['animal_detection']['animal_categories']['poultry'],
+        data['animal_detection']['animal_categories']['goats'],
+        data['animal_detection']['animal_categories']['sheep'],
+        data['animal_detection']['animal_categories']['pigs'],
+        data['animal_detection']['animal_categories']['horses'],
+        data['animal_detection']['animal_categories']['other_livestock'],
+        data['animal_detection']['animal_categories']['wild_animals'],
+        data['animal_detection']['animal_types_identified'],
+        data['animal_detection'].get('animal_description', ''),
+        data['animal_detection']['animal_activity'],
+        data['animal_detection']['animal_health_indicators'],
+        data['animal_detection']['integration_with_crops'],
+        data['animal_detection']['confidence_score'],
 
         # Recommendations
         data['recommendations'],
@@ -260,8 +300,8 @@ class EmbeddingGenerator:
 
 def create_comprehensive_text_for_embedding(data: dict) -> str:
     """
-    Enhanced version of your existing create_text_for_embedding function
-    Optimized for agricultural crop analysis
+    Enhanced version for the updated flat table schema
+    Optimized for agricultural crop analysis with people, equipment, and animal detection
     """
     text_components = []
 
@@ -269,85 +309,147 @@ def create_comprehensive_text_for_embedding(data: dict) -> str:
     text_components.append(f"Crop: {data['crop']}")
     if data.get('alternate_names'):
         text_components.append(f"Also known as: {', '.join(data['alternate_names'])}")
+    if data.get('color'):
+        text_components.append(f"Colors: {', '.join(data['color'])}")
 
     # Overall description
     if data.get('overall_description'):
         text_components.append(data['overall_description'])
 
     # Growth stage information
-    growth_info = data.get('growth_stage', {})
-    if growth_info.get('stage'):
-        text_components.append(f"Growth stage: {growth_info['stage']}")
-        if growth_info.get('estimated_age_months'):
-            text_components.append(f"Age: {growth_info['estimated_age_months']} months")
-    if growth_info.get('description'):
-        text_components.append(growth_info['description'])
+    if data.get('growth_stage'):
+        text_components.append(f"Growth stage: {data['growth_stage']}")
+        if data.get('estimated_age_months'):
+            text_components.append(f"Age: {data['estimated_age_months']} months")
+    if data.get('growth_description'):
+        text_components.append(data['growth_description'])
 
     # Health assessment (critical for similarity)
-    health_info = data.get('health_assessment', {})
-    if health_info.get('overall_health'):
-        text_components.append(f"Health: {health_info['overall_health']}")
-    if health_info.get('disease_indicators') and health_info['disease_indicators'] != ['empty list']:
-        text_components.append(f"Diseases: {', '.join(health_info['disease_indicators'])}")
-    if health_info.get('pest_indicators') and health_info['pest_indicators'] != ['empty list']:
-        text_components.append(f"Pests: {', '.join(health_info['pest_indicators'])}")
-    if health_info.get('stress_indicators') and 'none_detected' not in health_info['stress_indicators']:
-        text_components.append(f"Stress: {', '.join(health_info['stress_indicators'])}")
-    if health_info.get('health_description'):
-        text_components.append(health_info['health_description'])
+    if data.get('overall_health'):
+        text_components.append(f"Health: {data['overall_health']}")
+    if data.get('disease_indicators') and data['disease_indicators'] != ['empty list']:
+        text_components.append(f"Diseases: {', '.join(data['disease_indicators'])}")
+    if data.get('pest_indicators') and data['pest_indicators'] != ['empty list']:
+        text_components.append(f"Pests: {', '.join(data['pest_indicators'])}")
+    if data.get('stress_indicators') and 'none_detected' not in str(data['stress_indicators']):
+        text_components.append(f"Stress: {', '.join(data['stress_indicators'])}")
+    if data.get('health_description'):
+        text_components.append(data['health_description'])
 
     # Field characteristics
-    field_info = data.get('field_characteristics', {})
     field_details = []
-    if field_info.get('planting_pattern'):
-        field_details.append(f"planted in {field_info['planting_pattern']}")
-    if field_info.get('plant_density'):
-        field_details.append(f"{field_info['plant_density']} density")
-    if field_info.get('crop_uniformity'):
-        field_details.append(f"{field_info['crop_uniformity']} uniformity")
+    if data.get('planting_pattern'):
+        field_details.append(f"planted in {data['planting_pattern']}")
+    if data.get('plant_density'):
+        field_details.append(f"{data['plant_density']} density")
+    if data.get('crop_uniformity'):
+        field_details.append(f"{data['crop_uniformity']} uniformity")
+    if data.get('weed_presence'):
+        field_details.append(f"{data['weed_presence']} weeds")
     if field_details:
         text_components.append("Field characteristics: " + ", ".join(field_details))
-    if field_info.get('field_description'):
-        text_components.append(field_info['field_description'])
+    if data.get('field_description'):
+        text_components.append(data['field_description'])
 
     # Environmental context
-    env_info = data.get('environmental_context', {})
     env_details = []
-    if env_info.get('setting'):
-        env_details.append(f"{env_info['setting']} setting")
-    if env_info.get('terrain'):
-        env_details.append(f"{env_info['terrain']} terrain")
-    if env_info.get('weather_conditions'):
-        env_details.append(f"{env_info['weather_conditions']} weather")
+    if data.get('setting'):
+        env_details.append(f"{data['setting']} setting")
+    if data.get('terrain'):
+        env_details.append(f"{data['terrain']} terrain")
+    if data.get('weather_conditions'):
+        env_details.append(f"{data['weather_conditions']} weather")
+    if data.get('surrounding_vegetation'):
+        env_details.append(f"surrounded by {data['surrounding_vegetation']}")
     if env_details:
         text_components.append("Environment: " + ", ".join(env_details))
-    if env_info.get('environment_description'):
-        text_components.append(env_info['environment_description'])
+    if data.get('environment_description'):
+        text_components.append(data['environment_description'])
+    if data.get('infrastructure_visible'):
+        text_components.append(f"Infrastructure: {', '.join(data['infrastructure_visible'])}")
 
     # Growing conditions
-    conditions_info = data.get('growing_conditions', {})
     condition_details = []
-    if conditions_info.get('moisture_level'):
-        condition_details.append(f"{conditions_info['moisture_level']} moisture")
-    if conditions_info.get('irrigation_evidence') and conditions_info['irrigation_evidence'] != 'not_visible':
-        condition_details.append(f"{conditions_info['irrigation_evidence']} irrigation")
-    if conditions_info.get('season_indication'):
-        condition_details.append(f"{conditions_info['season_indication']}")
+    if data.get('moisture_level'):
+        condition_details.append(f"{data['moisture_level']} moisture")
+    if data.get('irrigation_evidence') and data['irrigation_evidence'] != 'not_visible':
+        condition_details.append(f"{data['irrigation_evidence']} irrigation")
+    if data.get('season_indication'):
+        condition_details.append(f"{data['season_indication']}")
     if condition_details:
         text_components.append("Conditions: " + ", ".join(condition_details))
-    if conditions_info.get('conditions_description'):
-        text_components.append(conditions_info['conditions_description'])
+    if data.get('conditions_description'):
+        text_components.append(data['conditions_description'])
 
     # Agricultural insights
-    insights_info = data.get('agricultural_insights', {})
-    if insights_info.get('farming_type'):
-        text_components.append(f"Farming: {insights_info['farming_type']}")
-    if insights_info.get('management_quality'):
-        text_components.append(f"Management: {insights_info['management_quality']}")
-    if insights_info.get('harvest_readiness'):
-        text_components.append(f"Harvest readiness: {insights_info['harvest_readiness']}")
-    if insights_info.get('management_description'):
-        text_components.append(insights_info['management_description'])
+    if data.get('farming_type'):
+        text_components.append(f"Farming: {data['farming_type']}")
+    if data.get('management_quality'):
+        text_components.append(f"Management: {data['management_quality']}")
+    if data.get('harvest_readiness'):
+        text_components.append(f"Harvest readiness: {data['harvest_readiness']}")
+        if data.get('estimated_months_to_harvest'):
+            text_components.append(f"Months to harvest: {data['estimated_months_to_harvest']}")
+    if data.get('management_description'):
+        text_components.append(data['management_description'])
+
+    # People detection
+    if data.get('people_present'):
+        people_info = f"People present: {data.get('people_count', 0)} people"
+        if data.get('activities_observed'):
+            people_info += f", activities: {', '.join(data['activities_observed'])}"
+        text_components.append(people_info)
+        if data.get('people_description'):
+            text_components.append(data['people_description'])
+
+    # Equipment detection
+    if data.get('equipment_present'):
+        equipment_info = f"Equipment present: {data.get('equipment_count', 0)} pieces"
+        if data.get('equipment_types'):
+            equipment_info += f", types: {', '.join(data['equipment_types'])}"
+        if data.get('equipment_condition'):
+            equipment_info += f", condition: {data['equipment_condition']}"
+        if data.get('equipment_usage'):
+            equipment_info += f", usage: {data['equipment_usage']}"
+        text_components.append(equipment_info)
+        if data.get('equipment_description'):
+            text_components.append(data['equipment_description'])
+
+    # Animal detection
+    if data.get('animals_present'):
+        animal_counts = []
+        if data.get('cattle_count', 0) > 0:
+            animal_counts.append(f"{data['cattle_count']} cattle")
+        if data.get('poultry_count', 0) > 0:
+            animal_counts.append(f"{data['poultry_count']} poultry")
+        if data.get('goats_count', 0) > 0:
+            animal_counts.append(f"{data['goats_count']} goats")
+        if data.get('sheep_count', 0) > 0:
+            animal_counts.append(f"{data['sheep_count']} sheep")
+        if data.get('pigs_count', 0) > 0:
+            animal_counts.append(f"{data['pigs_count']} pigs")
+        if data.get('horses_count', 0) > 0:
+            animal_counts.append(f"{data['horses_count']} horses")
+        if data.get('other_livestock_count', 0) > 0:
+            animal_counts.append(f"{data['other_livestock_count']} other livestock")
+        if data.get('wild_animals_count', 0) > 0:
+            animal_counts.append(f"{data['wild_animals_count']} wild animals")
+
+        animal_info = f"Animals present: total {data.get('total_animal_count', 0)}"
+        if animal_counts:
+            animal_info += f" ({', '.join(animal_counts)})"
+        text_components.append(animal_info)
+
+        if data.get('animal_types_identified'):
+            text_components.append(f"Animal types: {', '.join(data['animal_types_identified'])}")
+        if data.get('animal_activity'):
+            text_components.append(f"Animal activities: {', '.join(data['animal_activity'])}")
+        if data.get('animal_health_indicators'):
+            text_components.append(f"Animal health: {data['animal_health_indicators']}")
+        if data.get('integration_with_crops'):
+            text_components.append(f"Crop-animal integration: {data['integration_with_crops']}")
+        if data.get('animal_description'):
+            text_components.append(data['animal_description'])
 
     # Recommendations (important for finding similar solutions)
     if data.get('recommendations'):
@@ -362,6 +464,16 @@ def create_comprehensive_text_for_embedding(data: dict) -> str:
     if data.get('search_context'):
         text_components.append(data['search_context'])
 
+    # Image metadata context
+    if data.get('image_quality'):
+        text_components.append(f"Image quality: {data['image_quality']}")
+    if data.get('viewing_angle'):
+        text_components.append(f"View: {data['viewing_angle']}")
+    if data.get('coverage_area'):
+        text_components.append(f"Coverage: {data['coverage_area']}")
+    if data.get('visual_description'):
+        text_components.append(data['visual_description'])
+
     # Join all components
     comprehensive_text = ". ".join([comp.strip() for comp in text_components if comp.strip()])
     return comprehensive_text
@@ -369,8 +481,8 @@ def create_comprehensive_text_for_embedding(data: dict) -> str:
 
 def save_to_clickhouse_with_embeddings(config: dict, data: dict, image_path: str = None):
     """
-    Enhanced version of your save_to_clickhouse_detailed function that computes embeddings during insert
-    This replaces your existing save_to_clickhouse_detailed function
+    Enhanced version for the updated flat table schema with embeddings
+    Includes all new fields: people, equipment, and animal detection
     """
 
     # Initialize embedding generator (singleton)
@@ -396,7 +508,7 @@ def save_to_clickhouse_with_embeddings(config: dict, data: dict, image_path: str
     start_dt = datetime.fromisoformat(data['metadata']['startDateTime'])
     end_dt = datetime.fromisoformat(data['metadata']['endDateTime'])
 
-    # Insert with embeddings
+    # Insert with all fields from flat schema
     client.execute(f'''
         INSERT INTO {config['table_crop_analysis']} (
             crop, alternate_names, color, confidence, overall_description,
@@ -406,6 +518,10 @@ def save_to_clickhouse_with_embeddings(config: dict, data: dict, image_path: str
             setting, terrain, surrounding_vegetation, infrastructure_visible, weather_conditions, environment_description,
             moisture_level, soil_visibility, irrigation_evidence, season_indication, conditions_description,
             farming_type, management_quality, harvest_readiness, estimated_months_to_harvest, management_description,
+            people_present, people_count, people_description, activities_observed, people_confidence_score,
+            equipment_present, equipment_count, equipment_types, equipment_description, equipment_condition, equipment_usage, equipment_confidence_score,
+            animals_present, total_animal_count, cattle_count, poultry_count, goats_count, sheep_count, pigs_count, horses_count, other_livestock_count, wild_animals_count,
+            animal_types_identified, animal_description, animal_activity, animal_health_indicators, integration_with_crops, animals_confidence_score,
             recommendations, recommendations_summary,
             semantic_tags, search_context,
             image_quality, lighting_conditions, viewing_angle, coverage_area, visual_description,
@@ -462,6 +578,40 @@ def save_to_clickhouse_with_embeddings(config: dict, data: dict, image_path: str
         data['agricultural_insights']['harvest_readiness'],
         data['agricultural_insights']['estimated_months_to_harvest'],
         data['agricultural_insights'].get('management_description', ''),
+
+        # People detection
+        data.get('people_detection', {}).get('people_present', False),
+        data.get('people_detection', {}).get('people_count', 0),
+        data.get('people_detection', {}).get('people_description', ''),
+        data.get('people_detection', {}).get('activities_observed', []),
+        data.get('people_detection', {}).get('people_confidence_score', 0.0),
+
+        # Equipment detection
+        data.get('equipment_detection', {}).get('equipment_present', False),
+        data.get('equipment_detection', {}).get('equipment_count', 0),
+        data.get('equipment_detection', {}).get('equipment_types', []),
+        data.get('equipment_detection', {}).get('equipment_description', ''),
+        data.get('equipment_detection', {}).get('equipment_condition', ''),
+        data.get('equipment_detection', {}).get('equipment_usage', ''),
+        data.get('equipment_detection', {}).get('equipment_confidence_score', 0.0),
+
+        # Animal detection
+        data.get('animal_detection', {}).get('animals_present', False),
+        data.get('animal_detection', {}).get('total_animal_count', 0),
+        data.get('animal_detection', {}).get('cattle_count', 0),
+        data.get('animal_detection', {}).get('poultry_count', 0),
+        data.get('animal_detection', {}).get('goats_count', 0),
+        data.get('animal_detection', {}).get('sheep_count', 0),
+        data.get('animal_detection', {}).get('pigs_count', 0),
+        data.get('animal_detection', {}).get('horses_count', 0),
+        data.get('animal_detection', {}).get('other_livestock_count', 0),
+        data.get('animal_detection', {}).get('wild_animals_count', 0),
+        data.get('animal_detection', {}).get('animal_types_identified', []),
+        data.get('animal_detection', {}).get('animal_description', ''),
+        data.get('animal_detection', {}).get('animal_activity', []),
+        data.get('animal_detection', {}).get('animal_health_indicators', ''),
+        data.get('animal_detection', {}).get('integration_with_crops', ''),
+        data.get('animal_detection', {}).get('animals_confidence_score', 0.0),
 
         # Recommendations
         data['recommendations'],

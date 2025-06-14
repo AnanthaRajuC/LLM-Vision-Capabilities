@@ -54,6 +54,13 @@
 
 # LLM-Vision-Capabilities
 
+The system is designed to:
+
+- Analyze crop images for health, growth stage, field characteristics, and environmental conditions
+- Generate comprehensive text descriptions for semantic search
+- Create embeddings for similarity search using both text and image features
+- Store everything in ClickHouse for efficient querying
+
 This Python script allows you to identify crops in an image using [Ollama](https://ollama.com/) server to run vision-enabled LLMs locally, such as `llama3.2-vision` or `qwen2.5vl`, without relying on the Hugging Face Transformers library or cloud-based APIs.
 
 It sends an image and a predefined JSON-format prompt to a selected vision model running locally via Ollama, and returns structured information about the crop detected in the image.
@@ -94,10 +101,14 @@ While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-v
 
 ⚠️ **Note:** These observations are based on running the models locally on a standard laptop. Performance and accuracy may vary depending on your system's hardware (CPU, GPU, RAM, etc.).
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Details
   
 - [Getting Started](GETTING_STARTED.MD)
 - [Pipeline](PIPELINE.MD)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Features
 
@@ -109,9 +120,13 @@ While the script has been briefly tested with `qwen2.5vl:latest` and `llama3.2-v
   - Confidence score
   - Metadata like inference time
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Demo Image
 
 ![Demo Image](crop_detector/assets/images/demo2.jpg)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Output
 
@@ -233,6 +248,8 @@ Crop Analysis
 }
 ```
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -276,6 +293,8 @@ Kindly follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0
 **style**   : Changes that do not affect the meaning of the code (white-space, formatting, missing semicolons, etc.)  
 **test**    : Adding missing tests or correcting existing tests  
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Reporting Issues/Suggest Improvements
 
 This Project uses GitHub's integrated issue tracking system to record bugs and feature requests. If you want to raise an issue, please follow the recommendations below:
@@ -285,10 +304,28 @@ This Project uses GitHub's integrated issue tracking system to record bugs and f
 * 	Please provide as much information as possible with the issue report.
 * 	If you need to paste code, or include a stack trace use Markdown +++```+++ escapes before and after your text.  
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## License
 
 Distributed under the MIT License. See [LICENSE.md](/LICENSE) for more information.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Contact
 
 Anantha Raju C - [@anantharajuc](https://twitter.com/anantharajuc) - arcswdev@gmail.com
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Star History
+
+<a href="https://www.star-history.com/#AnanthaRajuC/LLM-Vision-Capabilities&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=AnanthaRajuC/LLM-Vision-Capabilities&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=AnanthaRajuC/LLM-Vision-Capabilities&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=AnanthaRajuC/LLM-Vision-Capabilities&type=Date" />
+ </picture>
+</a>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>

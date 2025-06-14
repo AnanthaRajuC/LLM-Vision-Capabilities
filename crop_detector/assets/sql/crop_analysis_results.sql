@@ -45,6 +45,37 @@ CREATE TABLE crop_analysis_results
     harvest_readiness String,                           -- Crop readiness for harvest
     estimated_months_to_harvest Nullable(Float32),      -- Remaining time to harvest
     management_description String,                      -- Farming practices, management quality, and cultivation methods
+    -- People detection
+    people_present Bool,                                -- Boolean indicating if people are detected
+    people_count UInt32,                                -- Count of people visible in image
+    people_description String,                          -- Description of people, activities, location
+    activities_observed Array(String),                  -- Farming activities being performed
+    people_confidence_score Float32,                    -- Confidence score for people detection
+    -- Equipment detection
+    equipment_present Bool,                             -- Boolean indicating if equipment is detected
+    equipment_count UInt32,                             -- Count of equipment pieces visible
+    equipment_types Array(String),                      -- Types of equipment (tractor, harvester, etc.)
+    equipment_description String,                       -- Detailed description of equipment
+    equipment_condition String,                         -- Equipment condition assessment
+    equipment_usage String,                             -- Equipment usage status (active/idle/etc.)
+    equipment_confidence_score Float32,                 -- Confidence score for equipment detection
+    -- Animal detection
+    animals_present Bool,                               -- Boolean indicating if animals are detected
+    total_animal_count UInt32,                          -- Total count of all animals
+    cattle_count UInt32,                                -- Count of cattle
+    poultry_count UInt32,                               -- Count of poultry
+    goats_count UInt32,                                 -- Count of goats
+    sheep_count UInt32,                                 -- Count of sheep
+    pigs_count UInt32,                                  -- Count of pigs
+    horses_count UInt32,                                -- Count of horses
+    other_livestock_count UInt32,                       -- Count of other livestock
+    wild_animals_count UInt32,                          -- Count of wild animals
+    animal_types_identified Array(String),              -- Specific animal types detected
+    animal_description String,                          -- Detailed description of animals
+    animal_activity Array(String),                      -- Animal activities observed
+    animal_health_indicators String,                    -- Animal health assessment
+    integration_with_crops String,                      -- Animal-crop integration status
+    animals_confidence_score Float32,                   -- Confidence score for animal detection
     -- Recommendations
     recommendations Array(String),                      -- Suggested farming actions
     recommendations_summary String,                     -- Consolidated summary of key recommendations and priority actions
@@ -75,6 +106,11 @@ SETTINGS index_granularity = 8192;
 ALTER TABLE crop_analysis_results ADD INDEX idx_crop_health (crop, overall_health) TYPE bloom_filter GRANULARITY 1;
 ALTER TABLE crop_analysis_results ADD INDEX idx_growth_stage (growth_stage) TYPE bloom_filter GRANULARITY 1;
 ALTER TABLE crop_analysis_results ADD INDEX idx_semantic_tags (semantic_tags) TYPE bloom_filter GRANULARITY 1;
+ALTER TABLE crop_analysis_results ADD INDEX idx_people_present (people_present) TYPE bloom_filter GRANULARITY 1;
+ALTER TABLE crop_analysis_results ADD INDEX idx_equipment_present (equipment_present) TYPE bloom_filter GRANULARITY 1;
+ALTER TABLE crop_analysis_results ADD INDEX idx_animals_present (animals_present) TYPE bloom_filter GRANULARITY 1;
+ALTER TABLE crop_analysis_results ADD INDEX idx_equipment_types (equipment_types) TYPE bloom_filter GRANULARITY 1;
+ALTER TABLE crop_analysis_results ADD INDEX idx_animal_types (animal_types_identified) TYPE bloom_filter GRANULARITY 1;
 
 -- Example of how to insert data with the new schema
 -- INSERT INTO crop_analysis_results VALUES (
@@ -114,6 +150,41 @@ ALTER TABLE crop_analysis_results ADD INDEX idx_semantic_tags (semantic_tags) TY
 --     'not_ready',                                      -- harvest_readiness
 --     2,                                                -- estimated_months_to_harvest
 --     'Professional commercial operation with evidence of good management practices including proper spacing, irrigation, and crop maintenance.', -- management_description
+--
+--     -- People detection data
+--     true,                                             -- people_present
+--     2,                                                -- people_count
+--     'Two farmers visible in the field, one inspecting plants and another operating irrigation equipment.', -- people_description
+--     ['crop inspection', 'irrigation management'],     -- activities_observed
+--     0.85,                                             -- people_confidence_score
+--
+--     -- Equipment detection data
+--     true,                                             -- equipment_present
+--     3,                                                -- equipment_count
+--     ['tractor', 'irrigation_system', 'sprayer'],      -- equipment_types
+--     'Red tractor parked at field edge, drip irrigation system throughout field, and portable sprayer near storage shed.', -- equipment_description
+--     'good',                                           -- equipment_condition
+--     'idle',                                           -- equipment_usage
+--     0.9,                                              -- equipment_confidence_score
+--
+--     -- Animal detection data
+--     false,                                            -- animals_present
+--     0,                                                -- total_animal_count
+--     0,                                                -- cattle_count
+--     0,                                                -- poultry_count
+--     0,                                                -- goats_count
+--     0,                                                -- sheep_count
+--     0,                                                -- pigs_count
+--     0,                                                -- horses_count
+--     0,                                                -- other_livestock_count
+--     0,                                                -- wild_animals_count
+--     [],                                               -- animal_types_identified
+--     'No animals detected in the agricultural scene.',  -- animal_description
+--     [],                                               -- animal_activity
+--     'not_applicable',                                 -- animal_health_indicators
+--     'not_applicable',                                 -- integration_with_crops
+--     0.95,                                             -- animals_confidence_score
+--
 --     ['Implement regular irrigation to prevent drought stress', 'Monitor for disease and pests', 'Test soil and apply fertilizers'], -- recommendations
 --     'Priority actions include increasing irrigation frequency to address drought stress and implementing regular monitoring for optimal crop health.', -- recommendations_summary
 --     ['tomato', 'commercial farming', 'fruiting stage', 'drought stress', 'irrigation'], -- semantic_tags
