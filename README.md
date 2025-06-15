@@ -6,7 +6,53 @@
 *** Thanks again!
 -->
 
+# 🌾📸🎙🧠 Voice-Enabled Semantic Crop Intelligence
+
+### Search, identify, and explore crops using images, voice, and natural language.
+
 ![Banner GIF](crop_detector/assets/LLM-Vision-Capabilities.gif)
+
+An intelligent, multi-modal crop analysis and search system built using advanced Vision-Language Models (VLMs) and semantic search techniques. 
+
+This tool can detect crops from images, analyze their characteristics, and search similar crop types using natural language or voice.
+
+## 🧪 Example Use Cases
+
+- Upload photo → Get crop analysis and description
+- “Show me crops with red flowers and green stems” → Voice or text → View matching images
+
+## 🚀 Features
+
+### 🌿 Crop Detection & Analysis
+
+- Automatically identifies crops from images using Qwen 2.5 Vision, a powerful multimodal large language model.
+
+### 🔍 Semantic Search
+
+- Search for similar crops using:
+    - Text-based queries (e.g., “green leafy crop with wide leaves”)
+    - Powered by CLIP-like embeddings and cosine similarity search using ClickHouse
+
+### 🎙️ Voice-Based Querying
+
+- Allows users to speak their search queries naturally instead of typing
+- Voice is recorded using `sounddevice` and saved via `scipy.io.wavfile`
+- Audio is transcribed using **OpenAI's Whisper** via the `whisper` Python package
+- Transcribed text is passed to the **semantic search engine** for matching crop images
+
+### 🧠 Technology Stack
+
+
+
+| Component             | Technology                            |
+|-----------------------|---------------------------------------|
+| Vision-Language Model | Qwen 2.5 Vision                       |
+| Local Model Serving   | Ollama (self-hosted model runner)     |
+| Text-to-Speech / STT  | Whisper                               |
+| Embeddings            | CLIP-style vectors                    |
+| Database              | ClickHouse (vector search + metadata) |
+| Storage               | local FS (for image storage)          |
+| Backend Logic         | Python                                |
 
 <div align="center">
 
