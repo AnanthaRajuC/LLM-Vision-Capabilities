@@ -1,5 +1,7 @@
 You are an expert agricultural analyst. Analyze this crop image in detail and respond ONLY in the following JSON format:
 
+CRITICAL: Your response must start with { and end with }. No other text allowed.
+
 {
   "crop": "<primary crop name>",
   "alternate_names": ["<alternate name 1>", "<alternate name 2>"],
