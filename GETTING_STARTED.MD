@@ -22,6 +22,9 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 │   │      └── crop_detection_results.sql
 │   ├── db/
 │   │   └── clickhouse_client.py          # ClickHouse storage functions
+│   ├── search/
+│   │   ├── CropSemanticSearch.py
+│   │   └── speech_input.py
 │   ├── config.py                         # Configs and env
 │   ├── images_util.py                    # Image encoding
 │   ├── main.py                           # Unified entry point
@@ -33,8 +36,8 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 
 *	You need to have **ClickHouse** installed on your machine to persist the results. Using `DBeaver` or on any other ClickHouse client/console, create a database/schema/table named `crop_detection_results` and `crop_analysis_results`. 
 
-- ![crop_detection_results.sql](crop_detector/assets/sql/crop_detection_results.sql)
-- ![crop_analysis_results.sql](crop_detector/assets/sql/crop_analysis_results.sql)
+- crop_detector/assets/sql/crop_detection_results.sql
+- crop_detector/assets/sql/crop_analysis_results.sql
 
 We need to specify our Environment variables for the application. Open up the **`.env`** file in crop_detector directory and update the fields with appropriate values.
 
@@ -98,42 +101,43 @@ The app uses two levels of prompt complexity, stored externally as text files un
 
 ---
 
-## 🚀 Usage
+## 🚀 Quick Start Guide
 
-Once everything is set up, you can run the script to process an image using one of the vision models.
+Get up and running with the core features of this multimodal crop assistant:
 
-Use the following command:
+### 🖼️ Image Analysis
+- Add your crop image to: `crop_detector/assets/images/`
+- Open `crop_detector/config.py` and update **`image_name`** (Line 11) with your file name.
+- Run the main script:  
+  ```bash
+  python crop_detector/main.py
+  ```
 
-```bash
-python3 LLM-Vision-Capabilities.py <model_name> <image_path>
-```
+### 📝 Text-Based Image Search
+- Open `crop_detector/Search/CropSemanticSearch.py`
+- Update the search query at **Line 63** with your desired text (e.g., `"crops with red flowers"`)
+- Run the script:
+  ```bash
+  python crop_detector/Search/CropSemanticSearch.py
+  ```
 
-- `<model_name>`: The name of the model you pulled (e.g., `llama3.2-vision:latest` or `qwen2.5vl:latest`).
-- `<image_path>`: The full path to the image file you want to analyze.
-
-### ✅ Examples
-
-```bash
-python3 LLM-Vision-Capabilities.py llama3.2-vision:latest /home/user/image.jpg
-python3 LLM-Vision-Capabilities.py qwen2.5vl:latest /home/user/image.jpg
-```
-
-These commands will send the image to the selected model and print the response, which may include image descriptions, object recognition, or other model-specific capabilities.
+### 🎤 Voice-Based Image Search
+- Run the voice input script:
+  ```bash
+  python crop_detector/Search/speech_input.py
+  ```
+- Speak your search query naturally — results will appear based on semantic similarity.
 
 ---
 
-## 🧠 Default Behavior
+### 🛠️ Coming Soon
+In the next version:
+- API endpoints for programmatic access  
+- Batch processing support  
+- Simple web UI for non-developers  
+- Modular enhancements for easier integration
 
-If you run the script without any arguments, it will use default values:
 
-```bash
-python3 LLM-Vision-Capabilities.py
-```
-
-- **Default model**: `qwen2.5vl:latest`
-- **Default image**: `assets/demo.jpg` (ensure this file is accessible from the script)
-
-This makes it easy to test the script quickly without having to specify parameters.
 
 ---
 
