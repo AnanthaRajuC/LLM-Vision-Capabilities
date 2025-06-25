@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     # Set the voice and output directory
     voice = 'af_heart'  # Example voice, change as needed
-    output_dir = '/home/anantharajuc/PycharmProjects/LLM-Vision-Capabilities/crop_detector/Search'  # Make sure this folder exists or create it
+    output_dir = '/crop_detector/Search'  # Make sure this folder exists or create it
 
     # Generate and save the audio
     generate_audio(text, voice, output_dir)

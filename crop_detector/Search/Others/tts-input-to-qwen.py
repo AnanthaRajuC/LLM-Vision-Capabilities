@@ -5,7 +5,7 @@ import scipy.io.wavfile as wav
 import whisper
 import ollama
 import subprocess
-import generate_audio
+
 
 # 🎙️ Record audio
 def record_audio(duration=5, samplerate=16000):

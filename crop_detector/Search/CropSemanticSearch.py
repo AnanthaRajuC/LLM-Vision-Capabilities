@@ -60,7 +60,7 @@ def semantic_crop_search(query_text: str, top_k: int = 5, use_hybrid: bool = Fal
 
 # --- Example Run ---
 if __name__ == "__main__":
-    query = "sugarcane"
+    query = "rice"
     try:
         results = semantic_crop_search(query, top_k=3)
         for idx, row in enumerate(results, 1):
