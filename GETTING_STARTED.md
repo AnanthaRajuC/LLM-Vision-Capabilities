@@ -2,6 +2,30 @@
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+## Technology Stack Integration
+
+| Component            | Technology                                  | Primary Use Case                        |
+|----------------------|---------------------------------------------|------------------------------------------|
+| Vision-Language Models | Qwen 2.5 Vision, LLaMA 3.2-Vision           | Image analysis and crop identification   |
+| Model Serving         | Ollama (localhost:11434)                    | Local VLM inference                      |
+| Speech Processing     | Whisper base model                          | Audio transcription                      |
+| Text Embeddings       | SentenceTransformer all-MiniLM-L6-v2        | Semantic search encoding                 |
+| Image Embeddings      | CLIP openai/clip-vit-base-patch32           | Image feature extraction                 |
+| Vector Database       | ClickHouse                                   | Similarity search and metadata storage   |
+| Audio Processing      | sounddevice, scipy.io.wavfile               | Voice input recording                    |
+
+## Feature Comparison Matrix
+
+| Feature             | Image Analysis                            | Text Search                              | Voice Search                             |
+|---------------------|--------------------------------------------|-------------------------------------------|-------------------------------------------|
+| Primary Function    | Crop identification and analysis           | Semantic similarity search                | Voice-to-text search                      |
+| Input Type          | Image files                                | Natural language text                     | Audio recording                           |
+| Processing Model    | Qwen 2.5 Vision / LLaMA 3.2-Vision          | SentenceTransformer embeddings            | Whisper + SentenceTransformer             |
+| Output Format       | Structured JSON with analysis              | Ranked similarity results                 | Search results via transcription          |
+| Data Storage        | Stores new analysis results                | Queries existing data                     | Queries existing data                     |
+| Typical Use Case    | "Analyze this crop photo"                  | "Find crops with red flowers"             | "Show me green leafy vegetables"          |
+
+
 ## Files and Directories Structure
 
 The project (a.k.a. project directory) has a particular directory structure. A representative project is shown below:
@@ -33,6 +57,22 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 ```
 
 ### Prerequisites
+
+The system requires three core external dependencies that must be installed before setting up the Python application:
+
+## Component Versions
+
+| Component   | Version | Purpose                        |
+|-------------|---------|--------------------------------|
+| Python      | 3.8+    | Application runtime            |
+| ClickHouse  | Latest  | Vector storage and search      |
+| Ollama      | Latest  | Local LLM inference server     |
+
+**System Requirements**
+
+- **RAM**: Minimum 8GB (16GB+ recommended for larger vision models)
+- **Storage**: 10GB+ free space for model downloads
+- **Network**: Internet access for initial model downloads
 
 *	You need to have **ClickHouse** installed on your machine to persist the results. Using `DBeaver` or on any other ClickHouse client/console, create a database/schema/table named `crop_detection_results` and `crop_analysis_results`. 
 
@@ -148,3 +188,14 @@ In the next version:
 - The models can take some time to load initially, especially on the first run.
 - Model capabilities vary: some may be better at object detection, others at text reading or image captioning.
 - Ensure your system has enough RAM and compute resources to run large vision models locally.
+
+## Common Issues and Solutions
+
+| Issue                          | Symptom                    | Solution                                  |
+|-------------------------------|----------------------------|-------------------------------------------|
+| Ollama not found              | Connection refused          | Ensure `ollama serve` is running          |
+| Model not available           | Model not found             | Run `ollama pull qwen2.5vl`               |
+| ClickHouse connection failed  | Connection error            | Verify ClickHouse server and credentials  |
+| Import errors                 | ModuleNotFoundError         | Install missing Python packages           |
+| Environment variables not loaded | None values in config    | Check `.env` file location and syntax     |
+

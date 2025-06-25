@@ -299,6 +299,17 @@ Crop Analysis
 <!-- CONTRIBUTING -->
 ## Contributing
 
+## Contribution Areas
+
+| Component            | Primary Files                                      | Testing Requirements                              | Expertise Needed                          |
+|----------------------|----------------------------------------------------|---------------------------------------------------|-------------------------------------------|
+| Image Analysis       | `main.py`, `image_utils.py`                        | VLM model validation, JSON output parsing         | Python, AI/ML, Computer Vision            |
+| Search Systems       | `CropSemanticSearch.py`, `speech_input.py`         | Vector similarity testing, audio processing       | Python, NLP, Speech Processing            |
+| Database Integration | `clickhouse_client.py`, schema files               | Database connectivity, embedding storage          | Python, ClickHouse, Vector Databases      |
+| AI Model Integration | `ollama_client.py`, `config.py`                    | Model inference testing, prompt validation        | Python, LLM Integration, API Design       |
+| Configuration        | `.env`, `assets/prompts/`                          | Environment setup, template parsing               | DevOps, Configuration Management          |
+
+
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 Kindly refer to [CONTRIBUTING.md](/CONTRIBUTING.md) for important **Pull Request Process** details
@@ -358,9 +369,11 @@ Distributed under the MIT License. See [LICENSE.md](/LICENSE) for more informati
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Contact
+## Contact Channels
 
-Anantha Raju C - [@anantharajuc](https://twitter.com/anantharajuc) - arcswdev@gmail.com
+- **GitHub Issues**: Primary channel for bug reports and feature requests
+- **Pull Request Discussions**: Technical discussions during code review  
+- **Email Contact**: For code of conduct violations or sensitive issues: Anantha Raju C - [@anantharajuc](https://twitter.com/anantharajuc) - arcswdev@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
