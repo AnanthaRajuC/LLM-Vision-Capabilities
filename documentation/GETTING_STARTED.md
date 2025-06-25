@@ -60,20 +60,6 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 
 The system requires three core external dependencies that must be installed before setting up the Python application:
 
-## Component Versions
-
-| Component   | Version | Purpose                        |
-|-------------|---------|--------------------------------|
-| Python      | 3.8+    | Application runtime            |
-| ClickHouse  | Latest  | Vector storage and search      |
-| Ollama      | Latest  | Local LLM inference server     |
-
-**System Requirements**
-
-- **RAM**: Minimum 8GB (16GB+ recommended for larger vision models)
-- **Storage**: 10GB+ free space for model downloads
-- **Network**: Internet access for initial model downloads
-
 *	You need to have **ClickHouse** installed on your machine to persist the results. Using `DBeaver` or on any other ClickHouse client/console, create a database/schema/table named `crop_detection_results` and `crop_analysis_results`. 
 
 - crop_detector/assets/sql/crop_detection_results.sql
@@ -188,14 +174,4 @@ In the next version:
 - The models can take some time to load initially, especially on the first run.
 - Model capabilities vary: some may be better at object detection, others at text reading or image captioning.
 - Ensure your system has enough RAM and compute resources to run large vision models locally.
-
-## Common Issues and Solutions
-
-| Issue                          | Symptom                    | Solution                                  |
-|-------------------------------|----------------------------|-------------------------------------------|
-| Ollama not found              | Connection refused          | Ensure `ollama serve` is running          |
-| Model not available           | Model not found             | Run `ollama pull qwen2.5vl`               |
-| ClickHouse connection failed  | Connection error            | Verify ClickHouse server and credentials  |
-| Import errors                 | ModuleNotFoundError         | Install missing Python packages           |
-| Environment variables not loaded | None values in config    | Check `.env` file location and syntax     |
 

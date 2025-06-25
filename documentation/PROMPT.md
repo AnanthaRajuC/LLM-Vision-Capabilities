@@ -2,6 +2,15 @@
 
 This document describes the prompt template system used to guide Vision-Language Model (VLM) analysis in the crop detection system. Prompt templates define the structured JSON schema and analysis instructions that the VLM follows when processing agricultural images. These templates are central to generating consistent, comprehensive crop analysis results.
 
+## Prompt Template Selection
+
+The system supports two analysis levels configured in `crop_detector/config.py`
+
+| Prompt Type | File Path                              | Description                                   |
+|-------------|-----------------------------------------|-----------------------------------------------|
+| basic       | `assets/prompts/crop_detection.txt`     | Basic crop identification and confidence      |
+| detailed    | `assets/prompts/crop_analysis.txt`      | Comprehensive agricultural assessment         |
+
 ## Template Architecture
 
 The prompt template system provides structured guidance to VLMs for agricultural image analysis. Templates are stored as text files and dynamically loaded during image processing.
