@@ -6,6 +6,7 @@ import whisper
 import ollama
 
 from CropSemanticSearch import semantic_crop_search
+from crop_detector.Search.Others.kokoroTTS import generate_audio
 
 def record_audio(duration=5, samplerate=16000):
     print("🎙️ Speak now...")
@@ -57,6 +58,15 @@ def run_voice_chatbot():
             print(f"Confidence: {row[1]}")
             print(f"Context: {row[2]}")
             print(f"Description: {row[3]}")
+
+        # 🗣️ TTS for the context of result #1
+        if results:
+            top_context = results[0][2]  # row[2] is the "Context"
+            generate_audio(
+                text=top_context,
+                voice="af_heart",
+                output_file="/home/anantharajuc/PycharmProjects/LLM-Vision-Capabilities/crop_detector/Search/context_speech.wav"
+            )
     except Exception as e:
         print("❌ Search failed:", e)
 

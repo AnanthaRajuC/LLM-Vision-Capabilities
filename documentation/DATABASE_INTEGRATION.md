@@ -8,7 +8,7 @@ The system uses ClickHouse as the primary data store, with specialized functions
 
 ### ClickHouse Integration Architecture
 
-![ClickHouse Integration Architecture](/documentation/diagrams/clickhouse-integration-arhitecture.png)
+![ClickHouse Integration Architecture](/documentation/diagrams/database-integration/clickhouse-integration-arhitecture.png)
 
 ## ClickHouse Client Functions
 
@@ -32,13 +32,13 @@ The `save_to_clickhouse_basic()` function handles simple crop identification res
 
 The `save_to_clickhouse_detailed()` function persists complete agricultural analysis including health assessment, field characteristics, environmental context, and entity detection data:
 
-![Comprehensive Analysis Storage](/documentation/diagrams/comprehensive-analysis-storage.png)
+![Comprehensive Analysis Storage](/documentation/diagrams/database-integration/comprehensive-analysis-storage.png)
 
 ## Embedding Generation System
 
 The `EmbeddingGenerator` class implements a singleton pattern for efficient model loading and provides multi-modal embedding generation capabilities.
 
-![EmbeddingGenerator Architecture](/documentation/diagrams/embedding-generator-architecture.png)
+![EmbeddingGenerator Architecture](/documentation/diagrams/database-integration/embedding-generator-architecture.png)
 
 ### Text Embedding Generation
 
@@ -74,7 +74,7 @@ The `create_comprehensive_text_for_embedding()` function transforms nested analy
 
 The `save_to_clickhouse_with_embeddings()` function orchestrates the complete data persistence workflow:
 
-![Full Integration Pipeline](/documentation/diagrams/full-integration-pipeline.png)
+![Full Integration Pipeline](/documentation/diagrams/database-integration/full-integration-pipeline.png)
 
 ## Database Schema Integration
 
@@ -96,7 +96,7 @@ The system handles the transformation from nested JSON structures to flat databa
 
 The embedding vectors are stored as ClickHouse `Array(Float32)` columns with specific dimensional constraints:
 
-![embedding vectors](/documentation/diagrams/embedding-vectors.png)
+![embedding vectors](/documentation/diagrams/database-integration/embedding-vectors.png)
 
 The database integration layer provides a robust foundation for both structured agricultural data storage and semantic search capabilities through its multi-modal embedding approach and comprehensive text generation pipeline.
 
